@@ -70,7 +70,7 @@ export default defineDriver<VercelKVOptions>((opts) => {
       let ttl = tOptions?.ttl ?? opts.ttl;
       if (ttl) {
         return getClient()
-          .set(r(key), value, { ttl })
+          .set(r(key), value, { ex: ttl })
           .then(() => {});
       } else {
         return getClient()
